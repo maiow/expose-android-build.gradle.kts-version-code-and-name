@@ -16,7 +16,7 @@ fi
 
 # Write the extracted values to a temporary file
 echo "ANDROID_VERSION_CODE: $ANDROID_VERSION_CODE" > extracted_values.txt
-echo "ANDROID_VERSION_NAME: $ANDROID_VERSION_NAME" >> extracted_values.txt
+echo "ANDROID_VERSION_NAME=$ANDROID_VERSION_NAME" >> extracted_values.txt
 
 # Debugging output to indicate script completion
 echo "Script execution complete."
