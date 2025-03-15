@@ -51,6 +51,11 @@ jobs:
         run: rm -f extracted-values
         continue-on-error: true  # Continue even if the file doesn't exist
 
+      - name: Unset Environment Variables
+        run: |
+          unset ANDROID_VERSION_NAME
+          unset ANDROID_VERSION_CODE
+
       - name: Run action with EXPOSE_CODE false and EXPOSE_NAME true
         uses: ./
         with:
@@ -81,6 +86,11 @@ jobs:
         run: rm -f extracted-values
         continue-on-error: true  # Continue even if the file doesn't exist
 
+      - name: Unset Environment Variables
+        run: |
+          unset ANDROID_VERSION_NAME
+          unset ANDROID_VERSION_CODE
+
       - name: Run action with EXPOSE_CODE true and EXPOSE_NAME false
         uses: ./
         with:
@@ -110,6 +120,11 @@ jobs:
       - name: Cleanup extracted-values file
         run: rm -f extracted-values
         continue-on-error: true  # Continue even if the file doesn't exist
+
+      - name: Unset Environment Variables
+        run: |
+          unset ANDROID_VERSION_NAME
+          unset ANDROID_VERSION_CODE
 
       - name: Run action with EXPOSE_CODE false and EXPOSE_NAME false
         uses: ./
