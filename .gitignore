@@ -8,13 +8,6 @@ local.properties
 # Log/OS Files
 *.log
 
-# Android Studio generated files and folders
-captures/
-.externalNativeBuild/
-.cxx/
-*.apk
-output.json
-
 # IntelliJ
 *.iml
 .idea/
@@ -22,12 +15,10 @@ misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
 
-# Keystore files
-*.jks
-*.keystore
+# Ignore any temporary or backup files
+*.tmp
+*.bak
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
-
-# Android Profiling
-*.hprof
+# OS metadata
+.DS_Store
+Thumbs.db

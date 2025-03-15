@@ -1,0 +1,17 @@
+name: Expose Android version code and name
+description: Finds the version code and version name in your build.gradle.kts file and publishes it as environment variables.
+author: Maria Ivanovskaya
+inputs:
+  EXPOSE_CODE:
+    description: 'Specify whether to expose the version code'
+    required: false
+    default: 'true'
+  EXPOSE_NAME:
+    description: 'Specify whether to expose the version name'
+    required: false
+    default: 'true'
+runs:
+  using: 'composite'
+  steps:
+    - run: ./extract-expose-version.sh
+      shell: bash
