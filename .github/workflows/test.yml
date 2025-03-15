@@ -81,7 +81,7 @@ jobs:
         run: |
           echo "ANDROID_VERSION_NAME: $ANDROID_VERSION_NAME"
           echo "ANDROID_VERSION_CODE: $ANDROID_VERSION_CODE"
-          if [[ $ANDROID_VERSION_NAME == 4.22.04.22.0 && $ANDROID_VERSION_CODE == 123 ]]; then
+          if [[ $ANDROID_VERSION_NAME == 4.22.0 && $ANDROID_VERSION_CODE == 123 ]]; then
             echo "Environment variables are set correctly."
           else
             echo "Environment variables are not set as expected."
