@@ -20,13 +20,13 @@ jobs:
           echo "    }" >> app/build.gradle.kts
           echo "}" >> app/build.gradle.kts
 
-      - name: Run action
+      - name: Run action with EXPOSE_CODE true and EXPOSE_NAME true
         uses: ./
         with:
           EXPOSE_CODE: 'true'
           EXPOSE_NAME: 'true'
 
-      - name: Validate versionName and versionCode
+      - name: Validate versionName and versionCode with EXPOSE_CODE and EXPOSE_NAME true
         run: |
           content=$(cat app/build.gradle.kts)
           if [[ $content == *"versionName = \"4.22.0\""* && $content == *"versionCode = 123"* ]]; then
@@ -36,7 +36,7 @@ jobs:
             exit 1
           fi
 
-      - name: Verify Environment Variables
+      - name: Verify Environment Variables with EXPOSE_CODE and EXPOSE_NAME true
         run: |
           echo "ANDROID_VERSION_NAME: $ANDROID_VERSION_NAME"
           echo "ANDROID_VERSION_CODE: $ANDROID_VERSION_CODE"
@@ -44,5 +44,72 @@ jobs:
             echo "Environment variables are set correctly."
           else
             echo "Environment variables are not set as expected."
+            exit 1
+          fi
+
+      - name: Run action with EXPOSE_CODE false and EXPOSE_NAME true
+        uses: ./
+        with:
+          EXPOSE_CODE: 'false'
+          EXPOSE_NAME: 'true'
+
+      - name: Validate versionName with EXPOSE_CODE false and EXPOSE_NAME true
+        run: |
+          content=$(cat app/build.gradle.kts)
+          if [[ $content == *"versionName = \"4.22.0\""* ]]; then
+            echo "Mock build.gradle.kts contains versionName, NAME is $ANDROID_VERSION_NAME"
+          else
+            echo "Mock build.gradle.kts does not contain expected versionName"
+            exit 1
+          fi
+
+      - name: Verify Environment Variables with EXPOSE_CODE false and EXPOSE_NAME true
+        run: |
+          echo "ANDROID_VERSION_NAME: $ANDROID_VERSION_NAME"
+          if [[ $ANDROID_VERSION_NAME == 4.22.0 ]]; then
+            echo "Environment variable for name is set correctly."
+          else
+            echo "Environment variable for name is not set as expected."
+            exit 1
+          fi
+
+      - name: Run action with EXPOSE_CODE true and EXPOSE_NAME false
+        uses: ./
+        with:
+          EXPOSE_CODE: 'true'
+          EXPOSE_NAME: 'false'
+
+      - name: Validate versionCode with EXPOSE_CODE true and EXPOSE_NAME false
+        run: |
+          content=$(cat app/build.gradle.kts)
+          if [[ $content == *"versionCode = 123"* ]]; then
+            echo "Mock build.gradle.kts contains versionCode, CODE is $ANDROID_VERSION_CODE"
+          else
+            echo "Mock build.gradle.kts does not contain expected versionCode"
+            exit 1
+          fi
+
+      - name: Verify Environment Variables with EXPOSE_CODE true and EXPOSE_NAME false
+        run: |
+          echo "ANDROID_VERSION_CODE: $ANDROID_VERSION_CODE"
+          if [[ $ANDROID_VERSION_CODE == 123 ]]; then
+            echo "Environment variable for code is set correctly."
+          else
+            echo "Environment variable for code is not set as expected."
+            exit 1
+          fi
+
+      - name: Run action with EXPOSE_CODE false and EXPOSE_NAME false
+        uses: ./
+        with:
+          EXPOSE_CODE: 'false'
+          EXPOSE_NAME: 'false'
+
+      - name: Validate no version information extracted with EXPOSE_CODE false and EXPOSE_NAME false
+        run: |
+          if [[ -z $ANDROID_VERSION_NAME && -z $ANDROID_VERSION_CODE ]]; then
+            echo "No version information extracted as expected."
+          else
+            echo "Version information extracted when it should not have been."
             exit 1
           fi
