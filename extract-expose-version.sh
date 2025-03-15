@@ -3,6 +3,12 @@
 # Debugging output to check script execution
 echo "Script is being executed..."
 
+# Check if the build.gradle.kts file exists
+if [ ! -f "app/build.gradle.kts" ]; then
+    echo "Error: app/build.gradle.kts file not found."
+    exit 1
+fi
+
 # Extract Android version code
 if [ "$EXPOSE_CODE" == 'true' ]; then
     ANDROID_VERSION_CODE=$(grep "versionCode" app/build.gradle.kts | sed "s/.*versionCode\\s*=\\s*\\([0-9]*\\).*/\\1/")
