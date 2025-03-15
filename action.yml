@@ -23,17 +23,19 @@ runs:
         export IN_EXPOSE_NAME="${{ inputs.EXPOSE_NAME }}"
         if [[ $IN_EXPOSE_CODE == "false" && $IN_EXPOSE_NAME == "false" ]]; then
           echo "Both EXPOSE_CODE and EXPOSE_NAME are set to false. Skipping further steps."
-          exit 0
+          exit 1
         fi
         $GITHUB_WORKSPACE/extract-expose-version.sh $IN_EXPOSE_CODE $IN_EXPOSE_NAME
       shell: bash
 
     - name: Read extracted values from file
+      if: ${{ !cancelled() }}
       id: read_values
       run: cat extracted_values.txt
       shell: bash
 
     - name: Set environment variables
+      if: ${{ !cancelled() }}
       run: |
         ANDROID_VERSION_CODE=$(grep "ANDROID_VERSION_CODE" extracted_values.txt | cut -d '=' -f 2 | tr -d '[:space:]')
         ANDROID_VERSION_CODE_STR="$ANDROID_VERSION_CODE"
