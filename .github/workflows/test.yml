@@ -12,12 +12,12 @@ jobs:
 
       - name: Create mock build.gradle.kts
         run: |
-          echo "android {" > build.gradle.kts
-          echo "    defaultConfig {" >> build.gradle.kts
-          echo "        versionName = \"4.22.0\"" >> build.gradle.kts
-          echo "        versionCode = 123" >> build.gradle.kts
-          echo "    }" >> build.gradle.kts
-          echo "}" >> build.gradle.kts
+          echo "android {" > app/build.gradle.kts
+          echo "    defaultConfig {" >> app/build.gradle.kts
+          echo "        versionName = \"4.22.0\"" >> app/build.gradle.kts
+          echo "        versionCode = 123" >> app/build.gradle.kts
+          echo "    }" >> app/build.gradle.kts
+          echo "}" >> app/build.gradle.kts
 
       - name: Run action
         uses: ./
@@ -27,7 +27,7 @@ jobs:
 
       - name: Validate versionName and versionCode
         run: |
-          content=$(cat build.gradle.kts)
+          content=$(cat app/build.gradle.kts)
           if [[ $content == *"versionName = \"4.22.0\""* && $content == *"versionCode = 123"* ]]; then
             echo "Mock build.gradle.kts contains versionName and versionCode, NAME is $ANDROID_VERSION_NAME, CODE is $ANDROID_VERSION_CODE"
           else
