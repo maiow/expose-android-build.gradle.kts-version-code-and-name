@@ -21,6 +21,10 @@ runs:
       run: |
         export IN_EXPOSE_CODE="${{ inputs.EXPOSE_CODE }}"
         export IN_EXPOSE_NAME="${{ inputs.EXPOSE_NAME }}"
+        if [[ $IN_EXPOSE_CODE == "false" && $IN_EXPOSE_NAME == "false" ]]; then
+          echo "Both EXPOSE_CODE and EXPOSE_NAME are set to false. Skipping further steps."
+          exit 0
+        fi
         $GITHUB_WORKSPACE/extract-expose-version.sh $IN_EXPOSE_CODE $IN_EXPOSE_NAME
       shell: bash
 
