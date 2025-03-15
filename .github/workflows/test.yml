@@ -53,8 +53,8 @@ jobs:
 
       - name: Unset Environment Variables
         run: |
-          echo "ANDROID_VERSION_NAME:" > $GITHUB_ENV
-          echo "ANDROID_VERSION_CODE:" > $GITHUB_ENV
+          echo "ANDROID_VERSION_NAME=" >> $GITHUB_ENV
+          echo "ANDROID_VERSION_CODE=" >> $GITHUB_ENV
 
       - name: Run action with EXPOSE_CODE false and EXPOSE_NAME true
         uses: ./
@@ -88,8 +88,8 @@ jobs:
 
       - name: Unset Environment Variables
         run: |
-          echo "ANDROID_VERSION_NAME:" > $GITHUB_ENV
-          echo "ANDROID_VERSION_CODE:" > $GITHUB_ENV
+          echo "ANDROID_VERSION_NAME=" >> $GITHUB_ENV
+          echo "ANDROID_VERSION_CODE=" >> $GITHUB_ENV
 
       - name: Run action with EXPOSE_CODE true and EXPOSE_NAME false
         uses: ./
@@ -123,8 +123,8 @@ jobs:
 
       - name: Unset Environment Variables
         run: |
-          echo "ANDROID_VERSION_NAME:" > $GITHUB_ENV
-          echo "ANDROID_VERSION_CODE:" > $GITHUB_ENV
+          echo "ANDROID_VERSION_NAME=" >> $GITHUB_ENV
+          echo "ANDROID_VERSION_CODE=" >> $GITHUB_ENV
 
       - name: Run action with EXPOSE_CODE false and EXPOSE_NAME false
         uses: ./
