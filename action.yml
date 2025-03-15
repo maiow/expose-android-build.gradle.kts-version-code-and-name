@@ -19,8 +19,8 @@ runs:
 
     - name: Run the script with inputs
       run: |
-        EXPOSE_CODE=$INPUT_EXPOSE_CODE
-        EXPOSE_NAME=$INPUT_EXPOSE_NAME
+        EXPOSE_CODE=${{ inputs.EXPOSE_CODE }}
+        EXPOSE_NAME=${{ inputs.EXPOSE_NAME }}
         $GITHUB_WORKSPACE/extract-expose-version.sh $EXPOSE_CODE $EXPOSE_NAME
       shell: bash
 
