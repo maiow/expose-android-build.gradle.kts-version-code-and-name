@@ -8,7 +8,7 @@ if [ -z "$ANDROID_VERSION_CODE" ]; then
 fi
 
 # Extract Android version name
-ANDROID_VERSION_NAME=$(grep "versionName" app/build.gradle.kts | sed "s/.*versionName\\s*=\\s*'\\(.*\\)'.*/\\1/")
+ANDROID_VERSION_NAME=$(grep "versionName" app/build.gradle.kts | sed "s/.*versionName\\s*=\\s*'\\(.*\\)'.*/\\1/" | tr -d '[:space:]' | sed 's/"//g' | sed 's/versionName=//')
 if [ -z "$ANDROID_VERSION_NAME" ]; then
     echo "Error: Unable to extract version name."
     exit 1

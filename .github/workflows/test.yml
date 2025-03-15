@@ -35,10 +35,14 @@ jobs:
             echo "Mock build.gradle.kts does not contain expected values"
             exit 1
           fi
-          
-#          if [[ $ANDROID_VERSION_NAME == "4.22.0" && $ANDROID_VERSION_CODE == 123 ]]; then
-#            echo "Validation: Environment variables match mock values"
-#          else
-#            echo "Validation: Environment variables do not match mock values"
-#            exit 1
-#          fi
+
+      - name: Verify Environment Variables
+        run: |
+          echo "ANDROID_VERSION_NAME: $ANDROID_VERSION_NAME"
+          echo "ANDROID_VERSION_CODE: $ANDROID_VERSION_CODE"
+          if [[ $ANDROID_VERSION_NAME == 4.22.0 && $ANDROID_VERSION_CODE == 123 ]]; then
+            echo "Environment variables are set correctly."
+          else
+            echo "Environment variables are not set as expected."
+            exit 1
+          fi
