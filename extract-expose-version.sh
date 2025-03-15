@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Debugging output to check script execution
+echo "Script is being executed..."
+
 # Extract Android version code
 if [ "$EXPOSE_CODE" == 'true' ]; then
     ANDROID_VERSION_CODE=$(grep "versionCode" app/build.gradle.kts | sed "s/.*versionCode\\s*=\\s*\\([0-9]*\\).*/\\1/")
@@ -13,3 +16,6 @@ if [ "$EXPOSE_NAME" == 'true' ]; then
     export ANDROID_VERSION_NAME
     echo "ANDROID_VERSION_NAME extracted: $ANDROID_VERSION_NAME"
 fi
+
+# Debugging output to indicate script completion
+echo "Script execution complete."
