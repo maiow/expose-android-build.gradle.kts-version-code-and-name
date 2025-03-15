@@ -17,8 +17,11 @@ runs:
       run: chmod +x $GITHUB_WORKSPACE/extract-expose-version.sh
       shell: bash
 
-    - name: Run the script
-      run: $GITHUB_WORKSPACE/extract-expose-version.sh
+    - name: Run the script with inputs
+      run: |
+        EXPOSE_CODE=$INPUT_EXPOSE_CODE
+        EXPOSE_NAME=$INPUT_EXPOSE_NAME
+        $GITHUB_WORKSPACE/extract-expose-version.sh $EXPOSE_CODE $EXPOSE_NAME
       shell: bash
 
     - name: Read extracted values from file
