@@ -6,6 +6,11 @@ if [ ! -f "app/build.gradle.kts" ]; then
     exit 1
 fi
 
+# Assign input values to variables
+EXPOSE_CODE="${IN_EXPOSE_CODE}"
+EXPOSE_NAME="${IN_EXPOSE_NAME}"
+
+# Echo the input values
 echo "EXPOSE_CODE is $EXPOSE_CODE, EXPOSE_NAME is $EXPOSE_NAME"
 
 # Check if EXPOSE_CODE is true for extracting Android version code
