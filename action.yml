@@ -13,5 +13,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: ./extract-expose-version.sh
+    - name: Set executable permission for the script
+      run: chmod +x $GITHUB_WORKSPACE/extract-expose-version.sh
+      shell: bash
+
+    - name: Run the script
+      run: $GITHUB_WORKSPACE/extract-expose-version.sh
       shell: bash
