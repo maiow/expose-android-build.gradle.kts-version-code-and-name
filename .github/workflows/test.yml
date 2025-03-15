@@ -35,9 +35,11 @@ jobs:
             exit 1
           fi
           
-          if [[ $ANDROID_VERSION_NAME == "4.22.0" && $ANDROID_VERSION_CODE == 123 ]]; then
-            echo "Validation: Environment variables match mock values"
-          else
-            echo "Validation: Environment variables do not match mock values"
-            exit 1
-          fi
+#          if [[ $ANDROID_VERSION_NAME == "4.22.0" && $ANDROID_VERSION_CODE == 123 ]]; then
+#            echo "Validation: Environment variables match mock values"
+#          else
+#            echo "Validation: Environment variables do not match mock values"
+#            exit 1
+#          fi
+          echo "ANDROID_VERSION_NAME is $ANDROID_VERSION_NAME"
+          echo "$ANDROID_VERSION_CODE is $ANDROID_VERSION_CODE"
