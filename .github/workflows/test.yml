@@ -47,6 +47,10 @@ jobs:
             exit 1
           fi
 
+      - name: Cleanup extracted-values file
+        run: rm -f extracted-values
+        continue-on-error: true  # Continue even if the file doesn't exist
+
       - name: Run action with EXPOSE_CODE false and EXPOSE_NAME true
         uses: ./
         with:
@@ -73,6 +77,10 @@ jobs:
             exit 1
           fi
 
+      - name: Cleanup extracted-values file
+        run: rm -f extracted-values
+        continue-on-error: true  # Continue even if the file doesn't exist
+
       - name: Run action with EXPOSE_CODE true and EXPOSE_NAME false
         uses: ./
         with:
@@ -98,6 +106,10 @@ jobs:
             echo "Environment variable for code is not set as expected."
             exit 1
           fi
+
+      - name: Cleanup extracted-values file
+        run: rm -f extracted-values
+        continue-on-error: true  # Continue even if the file doesn't exist
 
       - name: Run action with EXPOSE_CODE false and EXPOSE_NAME false
         uses: ./
