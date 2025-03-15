@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Extract Android version code
-ANDROID_VERSION_CODE=$(grep "versionCode" app/build.gradle.kts | sed 's/.*versionCode\s*=\s*\([0-9]*\).*/\1/')
+# Extract Android version code as string
+ANDROID_VERSION_CODE=$(grep "versionCode" app/build.gradle.kts | sed 's/.*versionCode\s*=\s*\([0-9]*\).*/\1/' | awk '{print $0+0}')
 if [ -z "$ANDROID_VERSION_CODE" ]; then
     echo "Error: Unable to extract version code."
     exit 1
@@ -15,7 +15,7 @@ if [ -z "$ANDROID_VERSION_NAME" ]; then
 fi
 
 # Write the extracted values to a temporary file
-echo "ANDROID_VERSION_CODE: $ANDROID_VERSION_CODE" > extracted_values.txt
+echo "ANDROID_VERSION_CODE=$ANDROID_VERSION_CODE" > extracted_values.txt
 echo "ANDROID_VERSION_NAME=$ANDROID_VERSION_NAME" >> extracted_values.txt
 
 # Debugging output to indicate script completion
