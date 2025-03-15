@@ -12,6 +12,7 @@ jobs:
 
       - name: Create mock build.gradle.kts
         run: |
+          mkdir -p app
           echo "android {" > app/build.gradle.kts
           echo "    defaultConfig {" >> app/build.gradle.kts
           echo "        versionName = \"4.22.0\"" >> app/build.gradle.kts
