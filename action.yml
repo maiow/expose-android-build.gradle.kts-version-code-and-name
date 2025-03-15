@@ -27,5 +27,10 @@ runs:
       shell: bash
 
     - name: Set environment variables
-      run: echo "version_info=$(cat extracted_values.txt)" >> $GITHUB_ENV
+      run: |
+        ANDROID_VERSION_CODE=$(grep "ANDROID_VERSION_CODE" extracted_values.txt | cut -d '=' -f 2 | tr -d '[:space:]')
+        ANDROID_VERSION_CODE_STR="$ANDROID_VERSION_CODE"
+        echo "ANDROID_VERSION_CODE=$ANDROID_VERSION_CODE_STR" >> $GITHUB_ENV
+        ANDROID_VERSION_NAME=$(grep "ANDROID_VERSION_NAME" extracted_values.txt | cut -d '=' -f 2 | tr -d '[:space:]')
+        echo "ANDROID_VERSION_NAME=$ANDROID_VERSION_NAME" >> $GITHUB_ENV
       shell: bash
