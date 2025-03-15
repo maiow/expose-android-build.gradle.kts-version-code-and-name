@@ -20,3 +20,12 @@ runs:
     - name: Run the script
       run: $GITHUB_WORKSPACE/extract-expose-version.sh
       shell: bash
+
+    - name: Read extracted values from file
+      id: read_values
+      run: cat extracted_values.txt
+      shell: bash
+
+    - name: Set environment variables
+      run: echo "version_info=$(cat extracted_values.txt)" >> $GITHUB_ENV
+      shell: bash
