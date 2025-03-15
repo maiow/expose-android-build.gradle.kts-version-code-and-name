@@ -1,0 +1,43 @@
+name: Test Action
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create mock build.gradle.kts
+        run: |
+          echo "android {" > build.gradle.kts
+          echo "    defaultConfig {" >> build.gradle.kts
+          echo "        versionName = \"4.22.0\"" >> build.gradle.kts
+          echo "        versionCode = 123" >> build.gradle.kts
+          echo "    }" >> build.gradle.kts
+          echo "}" >> build.gradle.kts
+
+      - name: Run action
+        uses: ./
+        with:
+          EXPOSE_CODE: 'true'
+          EXPOSE_NAME: 'true'
+
+      - name: Validate versionName and versionCode
+        run: |
+          content=$(cat build.gradle.kts)
+          if [[ $content == *"versionName = \"4.22.0\""* && $content == *"versionCode = 123"* ]]; then
+            echo "Mock build.gradle.kts contains versionName and versionCode"
+          else
+            echo "Mock build.gradle.kts does not contain expected values"
+            exit 1
+          fi
+          
+          if [[ $ANDROID_VERSION_NAME == "4.22.0" && $ANDROID_VERSION_CODE == 123 ]]; then
+            echo "Validation: Environment variables match mock values"
+          else
+            echo "Validation: Environment variables do not match mock values"
+            exit 1
+          fi
