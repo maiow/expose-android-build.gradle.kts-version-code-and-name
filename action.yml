@@ -29,13 +29,13 @@ runs:
       shell: bash
 
     - name: Read extracted values from file
-      if: ${{ !cancelled() }}
+      if: ${{ !failure() }}
       id: read_values
       run: cat extracted_values.txt
       shell: bash
 
     - name: Set environment variables
-      if: ${{ !cancelled() }}
+      if: ${{ !failure() }}
       run: |
         ANDROID_VERSION_CODE=$(grep "ANDROID_VERSION_CODE" extracted_values.txt | cut -d '=' -f 2 | tr -d '[:space:]')
         ANDROID_VERSION_CODE_STR="$ANDROID_VERSION_CODE"
