@@ -29,7 +29,7 @@ jobs:
         run: |
           content=$(cat build.gradle.kts)
           if [[ $content == *"versionName = \"4.22.0\""* && $content == *"versionCode = 123"* ]]; then
-            echo "Mock build.gradle.kts contains versionName and versionCode"
+            echo "Mock build.gradle.kts contains versionName and versionCode, NAME is $ANDROID_VERSION_NAME, CODE is $ANDROID_VERSION_CODE"
           else
             echo "Mock build.gradle.kts does not contain expected values"
             exit 1
@@ -41,5 +41,3 @@ jobs:
 #            echo "Validation: Environment variables do not match mock values"
 #            exit 1
 #          fi
-          echo "ANDROID_VERSION_NAME is $ANDROID_VERSION_NAME"
-          echo "$ANDROID_VERSION_CODE is $ANDROID_VERSION_CODE"
