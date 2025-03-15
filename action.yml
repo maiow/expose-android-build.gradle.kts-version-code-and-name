@@ -21,7 +21,7 @@ runs:
       run: |
         IN_EXPOSE_CODE=${{ inputs.EXPOSE_CODE }}
         IN_EXPOSE_NAME=${{ inputs.EXPOSE_NAME }}
-        $GITHUB_WORKSPACE/extract-expose-version.sh $EXPOSE_CODE $EXPOSE_NAME
+        $GITHUB_WORKSPACE/extract-expose-version.sh $IN_EXPOSE_CODE $IN_EXPOSE_NAME
       shell: bash
 
     - name: Read extracted values from file
