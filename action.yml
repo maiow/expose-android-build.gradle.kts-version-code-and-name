@@ -20,3 +20,10 @@ runs:
     - name: Run the script
       run: $GITHUB_WORKSPACE/extract-expose-version.sh
       shell: bash
+
+    - name: Set up environment variables
+      run: |
+        source extracted_values.txt
+        echo "ANDROID_VERSION_NAME=$ANDROID_VERSION_NAME" >> $GITHUB_ENV
+        echo "ANDROID_VERSION_CODE=$ANDROID_VERSION_CODE" >> $GITHUB_ENV
+      shell: bash
