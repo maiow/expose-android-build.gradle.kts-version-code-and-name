@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repo
       uses: actions/checkout@v2
       - name: Expose version name
-      uses: maiow/expose-android-build.gradle.kts-version-code-and-name@v1.0.0
+      uses: maiow/expose-android-version@v1.0.1
       with:
         EXPOSE_CODE: 'false'
 ~~~~~~~
