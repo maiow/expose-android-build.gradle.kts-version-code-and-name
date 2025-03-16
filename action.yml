@@ -1,6 +1,9 @@
-name: Expose Android version code and name
+name: Expose Android app version
 description: Finds the version code and version name in your build.gradle.kts file and set them as environment variables.
 author: Maria Ivanovskaya
+branding:
+  icon: 'at-sign'
+  color: 'orange'
 inputs:
   EXPOSE_CODE:
     description: 'Specify whether to expose the version code'
